@@ -1,0 +1,151 @@
+<html>
+
+<head>
+    <title>List Website</title>
+    <style>
+        #options {
+            display: none;
+            width: 150px;
+            border: 2px solid black;
+            padding: 20px;
+            font-size: x-large;
+
+        }
+
+        #profile {
+            display: none;
+            border: 1px solid black;
+            width: 340px;
+            margin-left: 40%;
+            padding: 20px;
+            background-color: antiquewhite;
+            font-size: x-large;
+        }
+
+        #Activateuser {
+            display: none;
+        }
+    </style>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        console.log(username);
+        function toggleOptions() {
+            var options = document.getElementById("options");
+            var profile = document.getElementById("profile");
+
+
+            if (profile.style.display === 'block') {
+                profile.style.display = 'none';
+            }
+
+
+            if (options.style.display === 'block') {
+                options.style.display = 'none';
+            }
+            else {
+                options.style.display = 'block';
+            }
+        }
+
+        var profileData = [{
+            "username": "Aniket",
+            "gmail": "aj375789@gmail.com",
+            "status": "Inactive",
+            "role":"Admin"
+        }, {
+            "username": "Rushikesh",
+            "gmail": "rushikesh765@gmail.com",
+            "status": "Active",
+            "role":"Developer"
+        }];
+        function toggleProfile() {
+            var options = document.getElementById("options");
+            var profile = document.getElementById("profile");
+
+
+            if (options.style.display === 'block') {
+                options.style.display = 'none';
+            }
+
+
+            if (profile.style.display === 'block') {
+                profile.style.display = 'none';
+            }
+            else {
+                profile.style.display = 'block';
+            }
+            flag = true;
+            profileData.forEach(function (n) {
+                if (username === n.username) {
+                    flag = false;
+                    document.getElementById("usernamep").innerText = n.username;
+                    document.getElementById("emailp").innerText = n.gmail;
+                    document.getElementById("status").innerText = n.status;
+                    if (n.status === 'Inactive') {
+                        document.getElementById("Activateuser").style.display = 'block';
+                    }
+                }
+            });
+            if (flag === true) {
+                window.location.href = "variable_access.html";
+            }
+
+        }
+
+        function closeDiv() {
+            document.getElementById("profile").style.display = 'none';
+            document.getElementById("options").style.display = 'none';
+        }
+        function activateUser(){
+            profileData.forEach(function(n){
+                 if(username === n.username){
+                    n.status="Active";
+                    toggleProfile();
+                    document.getElementById("Activateuser").style.display = 'none';
+                    alert("User Activated Successfully");
+                 }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div style="display: flex; justify-content: space-between;">
+        <input id="menubutton" style="height: 50px; width: 70px;" type="button" value="MENU" onclick="toggleOptions()">
+       <div style="display: flex;flex-direction: row;">
+        <div style="text-align: center; justify-content: center;padding-top: 10%;" id="admin_panal"><span>All Users</span><span>Deactivate User</span></div>
+        <img id="profilebutton"
+            src="https://static.vecteezy.com/system/resources/previews/007/461/014/non_2x/profile-gradient-logo-design-template-icon-vector.jpg"
+            height="70px" width="70px" onclick="toggleProfile()">
+        </div>
+
+    </div>
+
+
+    <div id="options">
+        <span>Services</span><br><br>
+        <span>Feedbacks</span><br><br>
+        <span>Projects</span><br><br>
+        <span>Location</span><br><br>
+        <span>Benefits</span><br><br>
+        <span>Rating</span><br><br>
+    </div>
+
+    <div id="profile">
+        <span id="closebtn" onclick="closeDiv()">x</span><br>
+        <span> Name : <span id="usernamep">.....</span> </span><br>
+        City : Pune<br>
+        <span> Email : <span id="emailp">.....</span> </span><br>
+        State : Maharashtra<br>
+        Nationality : Indian<br>
+        <span> Status : <span id="status">.....</span> </span><br>
+        <input type="button" id="Activateuser" value="Activate Account" onclick="activateUser()" />
+    </div>
+
+
+</body>
+
+</html>

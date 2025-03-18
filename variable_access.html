@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script>
+            var data=[{"username":"Aniket",
+                       "password":"123"
+                       },
+                       {"username":"Rushikesh",
+                       "password":"345"
+                       },
+                       {"username":"Samruddhi",
+                       "password":"678"
+                       },
+                       {"username":"Sejal",
+                       "password":"789"
+                       }];
+       function submitlogin(){
+        var a=document.getElementById("username").value;
+        var b=document.getElementById("pass").value;
+        console.log(a + b);
+        var flag=true;
+        data.forEach(function(n){
+            if(a === n.username && b === n.password){
+                flag=false;
+                window.location.href="onclickbutton.html?username="+n.username;
+            }
+        });
+        if(flag===true){
+            alert("Invalid Credentials , try again");
+        }
+      
+    }
+ </script>
+        
+    </head>
+    <body>
+        <input type="text" id="username" placeholder="enter Name"><br>
+        <input type="password" id="pass" placeholder="enter password"><br>
+        <input type="submit" onclick="submitlogin()">
+
+
+    </body>
+</html>
